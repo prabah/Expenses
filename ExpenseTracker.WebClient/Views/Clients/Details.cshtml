@@ -1,0 +1,56 @@
+﻿@model ExpenseTracker.DTO.Client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.Label("Description")</dt>
+
+        <dd>@Html.DisplayFor(model => model.Description)</dd>
+
+        <dt>@Html.Label("Address 1")</dt>
+
+        <dd>@Html.DisplayFor(model => model.Address1)</dd>
+
+        <dt>@Html.Label("Address 2")</dt>
+
+        <dd>@Html.DisplayFor(model => model.Address2)</dd>
+
+        <dt>@Html.Label("Address 3")</dt>
+
+        <dd>@Html.DisplayFor(model => model.Address3)</dd>
+
+        <dt>@Html.Label("Postcode")</dt>
+
+        <dd>@Html.DisplayFor(model => model.Postcode)</dd>
+
+        <dt>@Html.Label("Admin Email")</dt>
+
+        <dd>@Html.DisplayFor(model => model.AdminEmail)</dd>
+
+        <dt>@Html.Label("Email")</dt>
+
+        <dd>@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt>@Html.Label("Non Organisational Client")</dt>
+
+        <dd>@Html.DisplayFor(model => model.IsNonOrganisationlClient)</dd>
+
+        <dt>@Html.Label("Active")</dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
