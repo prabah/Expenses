@@ -182,7 +182,10 @@ namespace ExpenseTracker.WebClient.Controllers
             }
         }
 
-
+        public ActionResult ManageImages()
+        {
+            return View();
+        }
         //// GET: Expenses/Delete/5
         //public async Task<ActionResult> Delete(int expenseGroupId, int id)
         //{
