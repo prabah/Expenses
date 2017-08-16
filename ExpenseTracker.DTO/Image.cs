@@ -1,8 +1,6 @@
 ﻿using System;
 using Microsoft.WindowsAzure.Storage.Blob;
-using Microsoft.WindowsAzure.Storage.File;
 using System.ComponentModel;
-using ExpenseTracker.Constants;
 
 namespace ExpenseTracker.DTO
 {
@@ -28,9 +26,9 @@ namespace ExpenseTracker.DTO
 
         public int FileIndex { get; set; }
 
-        public ImageFileType ImageType { get; set; }
+        public int ImageType { get; set; }
 
-        public string ClientId { get; set; }
+        public int ClientId { get; set; }
 
         public string ContainerName { get; set; }
 
@@ -48,17 +46,11 @@ namespace ExpenseTracker.DTO
                     FileName = blob.Name,
                     URL = cdnEndpoint + urlPathAndQuery,
                     Size = blob.Properties.Length,
-                    ClientId = "client_id",
+                    ClientId = 1,
                     ContainerName = blob.Container.Name
                 };
             }
             return null;
-        }
-
-        public enum ImageFileType
-        {
-            Logo = 1,
-            Marketing = 2,
         }
     }
 }

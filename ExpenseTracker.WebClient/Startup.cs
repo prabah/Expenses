@@ -43,7 +43,9 @@ namespace ExpenseTracker.WebClient
                 Authority = ExpenseTrackerConstants.IdSrv,
                 RedirectUri = ExpenseTrackerConstants.ExpenseTrackerClient,
                 SignInAsAuthenticationType = "Cookies",
-                
+                UseTokenLifetime = false,
+
+
                 ResponseType = "code id_token token",
                 Scope = "openid profile roles expensetrackerapi offline_access",
 

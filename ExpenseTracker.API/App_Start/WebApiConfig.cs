@@ -6,6 +6,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ExpenseTracker.API
 {
@@ -23,7 +24,8 @@ namespace ExpenseTracker.API
                routeTemplate: "api/{controller}/{id}",
                defaults: new { id = RouteParameter.Optional }
            );
- 
+            var cors = new EnableCorsAttribute("https://localhost:44306", "*", "*");
+            config.EnableCors(cors);
 
             // clear the supported mediatypes of the xml formatter
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ExpenseTracker
+﻿namespace ExpenseTracker
 {
     public class ExpenseTrackerConstants
     {
@@ -21,6 +16,5 @@ namespace ExpenseTracker
         public const string IdSrvUserInfo = IdSrv + "/connect/userinfo";
 
         public const string GeneralExceptionMessage = "An error occurred";
-
     }
 }

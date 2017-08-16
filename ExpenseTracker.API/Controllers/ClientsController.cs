@@ -4,7 +4,6 @@ using Marvin.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web;
 using System.Web.Http;
 using ExpenseTracker.API.Helpers;
@@ -133,8 +132,6 @@ namespace ExpenseTracker.API.Controllers
             }
         }
 
-
-
         //[VersionedRoute("expensegroups/{expenseGroupId}/expenses/{id}", 2)]
         //[VersionedRoute("expenses/{id}", 2)]
         //public IHttpActionResult GetV2(int id, int? expenseGroupId = null, string fields = null)
@@ -143,69 +140,69 @@ namespace ExpenseTracker.API.Controllers
         //    {
         //        List<string> lstOfFields = new List<string>();
 
-        //        if (fields != null)
-        //        {
-        //            lstOfFields = fields.ToLower().Split(',').ToList();
-        //        }
+            //        if (fields != null)
+            //        {
+            //            lstOfFields = fields.ToLower().Split(',').ToList();
+            //        }
 
-        //        Repository.Entities.Expense expense = null;
+            //        Repository.Entities.Expense expense = null;
 
-        //        if (expenseGroupId == null)
-        //        {
-        //            expense = _repository.GetExpense(id);
-        //        }
-        //        else
-        //        {
-        //            var expensesForGroup = _repository.GetExpenses((int)expenseGroupId);
+            //        if (expenseGroupId == null)
+            //        {
+            //            expense = _repository.GetExpense(id);
+            //        }
+            //        else
+            //        {
+            //            var expensesForGroup = _repository.GetExpenses((int)expenseGroupId);
 
-        //            // if the group doesn't exist, we shouldn't try to get the expenses
-        //            if (expensesForGroup != null)
-        //            {
-        //                expense = expensesForGroup.FirstOrDefault(eg => eg.Id == id);
-        //            }
-        //        }
+            //            // if the group doesn't exist, we shouldn't try to get the expenses
+            //            if (expensesForGroup != null)
+            //            {
+            //                expense = expensesForGroup.FirstOrDefault(eg => eg.Id == id);
+            //            }
+            //        }
 
-        //        if (expense != null)
-        //        {
-        //            var returnValue = _expenseFactory.CreateDataShapedObject(expense, lstOfFields);
-        //            return Ok(returnValue);
-        //        }
-        //        else
-        //        {
-        //            return NotFound();
-        //        }
+            //        if (expense != null)
+            //        {
+            //            var returnValue = _expenseFactory.CreateDataShapedObject(expense, lstOfFields);
+            //            return Ok(returnValue);
+            //        }
+            //        else
+            //        {
+            //            return NotFound();
+            //        }
 
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return InternalServerError();
-        //    }
-        //}
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return InternalServerError();
+            //    }
+            //}
 
-        //[Route("expenses/{id}")]
-        //public IHttpActionResult Delete(int id)
-        //{
-        //    try
-        //    {
+            //[Route("expenses/{id}")]
+            //public IHttpActionResult Delete(int id)
+            //{
+            //    try
+            //    {
 
-        //        var result = _repository.DeleteExpense(id);
+            //        var result = _repository.DeleteExpense(id);
 
-        //        if (result.Status == RepositoryActionStatus.Deleted)
-        //        {
-        //            return StatusCode(HttpStatusCode.NoContent);
-        //        }
-        //        else if (result.Status == RepositoryActionStatus.NotFound)
-        //        {
-        //            return NotFound();
-        //        }
+            //        if (result.Status == RepositoryActionStatus.Deleted)
+            //        {
+            //            return StatusCode(HttpStatusCode.NoContent);
+            //        }
+            //        else if (result.Status == RepositoryActionStatus.NotFound)
+            //        {
+            //            return NotFound();
+            //        }
 
-        //        return BadRequest();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return InternalServerError();
-        //    }
-        //}
+            //        return BadRequest();
+            //    }
+            //    catch (Exception)
+            //    {
+            //        return InternalServerError();
+            //    }
+            //}
 
         [Route("clients")]
         public IHttpActionResult Post([FromBody]DTO.Client client)

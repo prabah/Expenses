@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "ManageImages";
+}
+
+<style>
+    table { border-collapse: collapse; }
+.percent {
+    position: absolute; width: 300px; height: 14px; z-index: 1; text-align: center; font-size: 0.8em; color: white;
+}
+.progress-bar {
+    width: 300px; height: 14px;
+    border-radius: 10px;
+    border: 1px solid #CCC;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#6666cc), to(#4b4b95));
+    border-image: initial;
+}
+.uploaded {
+    padding: 0;
+    height: 14px;
+    border-radius: 10px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#66cc00), to(#4b9500));
+    border-image: initial;
+}
+.dropbox {
+    width: 15em;
+    height: 3em;
+    border: 2px solid #DDD;
+    border-radius: 8px;
+    background-color: #FEFFEC;
+    text-align: center;
+    color: #BBB;
+    font-size: 2em;
+    font-family: Arial, sans-serif;
+}
+.dropbox span {
+    margin-top: 0.9em;
+    display: block;
+}
+.dropbox.not-available {
+    background-color: #F88;
+}
+.dropbox.over {
+    background-color: #bfb;
+}
+
+</style>
+
+<script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+
+    myApp.directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function () {
+                    scope.$apply(function () {
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
+
+    myApp.service('fileUpload', ['$http', function ($http) {
+        this.uploadFileToUrl = function (file, uploadUrl) {
+            var fd = new FormData();
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: { 'Content-Type': undefined }
+            })
+            .success(function () {
+                alert('done');
+            })
+            .error(function () {
+                alert(uploadUrl);
+            });
+        }
+    }]);
+
+    myApp.controller('myCtrl', ['$scope', 'fileUpload', function ($scope, fileUpload) {
+
+        $scope.uploadFile = function () {
+            var file = $scope.myFile;
+            console.log('file is ');
+            console.dir(file);
+            var uploadUrl = "https://localhost:44307/Image/Upload";
+            fileUpload.uploadFileToUrl(file, uploadUrl);
+        };
+
+    }]);
+
+</script>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <input type="file" file-model="myFile" />
+    <button ng-click="uploadFile()">upload me</button>
+</div>

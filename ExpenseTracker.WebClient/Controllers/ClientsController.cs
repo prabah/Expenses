@@ -1,8 +1,11 @@
-﻿using ExpenseTracker.DTO;
+﻿using System;
+using ExpenseTracker.DTO;
 using ExpenseTracker.WebClient.Helpers;
 using Marvin.JsonPatch;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -13,9 +16,9 @@ using Thinktecture.IdentityModel.Mvc;
 
 namespace ExpenseTracker.WebClient.Controllers
 {
+    [ResourceAuthorize("Read", "ExpenseGroup")]
     public class ClientsController : Controller
     {
-        [ResourceAuthorize("Read", "Clients")]
         public async Task<ActionResult> Index(int? page = 1)
         {
 
@@ -182,9 +185,33 @@ namespace ExpenseTracker.WebClient.Controllers
             }
         }
 
-        public ActionResult ManageImages()
+        public async Task<ActionResult> ManageImages()
         {
+            //var values = from ImageFileType e in
+            //                 Enum.GetValues(typeof(ImageFileType))
+            //             select new
+            //             {
+            //                 Id = (int)e,
+            //                 Name = e.ToDescriptionString()
+            //             };
+
+            //ViewBag.FileTypes = new SelectList(values, "Id", "Name");
+
+            //var files = _blobLogic.CloudFiles(id); //CloudFilesModel.FilteredFiles(id, _releaseLogic, _productLogic, _blobLogic);
+
+            //var detailsOfRelease = _releaseLogic.GetById(id);
+
+            //ViewBag.PageTitle = "Files for " + _productLogic.GetById(detailsOfRelease.ProductId).Name + " - Version " + detailsOfRelease.Version.ToString();
             return View();
+        }
+
+        public enum ImageFileType
+        {
+            [Description("Marketing Banner")]
+            Marketing = 1,
+
+            [Description("Logo")]
+            Logo = 2,
         }
         //// GET: Expenses/Delete/5
         //public async Task<ActionResult> Delete(int expenseGroupId, int id)
@@ -210,6 +237,5 @@ namespace ExpenseTracker.WebClient.Controllers
         //        return Content("An error occurred");
         //    }
         //}
-
     }
 }
